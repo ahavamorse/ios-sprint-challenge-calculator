@@ -18,7 +18,7 @@ enum OperatorType: String {
 class CalculatorBrain {
     var operand1String = ""
     var operand2String = ""
-    var operatorType: OperatorType?
+    var operatorType: OperatorType? = nil
     
     func addOperandDigit(_ digit: String) -> String {
         if operatorType == nil {
@@ -31,10 +31,36 @@ class CalculatorBrain {
     }
     
     func setOperator(_ operatorString: String) {
-        
+        if let newOperator = OperatorType(rawValue: operatorString) {
+            operatorType = newOperator
+        }
     }
     
     func calculateIfPossible() -> String? {
-        return ""
+        
+        if let op1 = Double(operand1String),
+            let op2 = Double(operand2String),
+            let calculationOperator = operatorType  {
+        
+            let answer: Double
+            
+            switch calculationOperator {
+            case .addition:
+                answer = op1 + op2
+            case .subtraction:
+                answer = op1 - op2
+            case .multiplication:
+                answer = op1 * op2
+            case .division:
+                if op2 != 0 {
+                    answer = op1 / op2
+                } else {
+                    return "Error"
+                }
+            }
+            
+            return String(answer)
+        }
+        return nil
     }
 }
