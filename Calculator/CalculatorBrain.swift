@@ -58,7 +58,9 @@ class CalculatorBrain {
                     return "Error"
                 }
             }
-            
+            operand1String = String(answer)
+            operand2String = ""
+            operatorType = nil
             return String(answer)
         }
         return nil
