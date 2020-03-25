@@ -75,7 +75,19 @@ class CalculatorBrain {
                     return "Error"
                 }
             }
-            operand1String = String(answer)
+            
+            var displayAnswer: Int? = nil
+            
+            if Double(Int(answer)) == answer {
+                displayAnswer = Int(answer)
+            }
+            
+            if let displayAnswer = displayAnswer {
+                operand1String = String(displayAnswer)
+            } else {
+                operand1String = String(answer)
+            }
+            
             operand2String = ""
             operatorType = nil
             
@@ -91,7 +103,11 @@ class CalculatorBrain {
                 
             }
             
-            return String(answer)
+            if let displayAnswer = displayAnswer {
+                return String(displayAnswer)
+            } else {
+                return String(answer)
+            }
         }
         return nil
     }
