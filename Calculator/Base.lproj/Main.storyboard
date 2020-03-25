@@ -51,6 +51,9 @@
                                 <state key="normal" title="%">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="percentButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="PfR-zU-cDU"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dUh-gN-rnS">
                                 <rect key="frame" x="281.5" y="92" width="93.5" height="115"/>

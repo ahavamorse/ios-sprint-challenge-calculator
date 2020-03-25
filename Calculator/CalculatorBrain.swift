@@ -33,15 +33,12 @@ class CalculatorBrain {
             }
             
             decimalTapped = true
-            print("decimal tapped")
         }
         
         if operatorType == nil {
             operand1String.append(digit)
             return operand1String
         } else {
-            print("yay adding to second number")
-            print("which before adding is: \(operand2String)")
             operand2String.append(digit)
             return operand2String
         }
@@ -51,7 +48,6 @@ class CalculatorBrain {
         if let newOperator = OperatorType(rawValue: operatorString) {
             operatorType = newOperator
             decimalTapped = false
-            print("new number wihtout decimal")
         }
     }
     
