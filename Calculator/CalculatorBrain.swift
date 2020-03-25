@@ -10,7 +10,7 @@ import Foundation
 
 enum OperatorType: String {
     case addition = "+"
-    case subtraction = "-"
+    case subtraction = "−"
     case multiplication = "×"
     case division = "÷"
 }
@@ -40,6 +40,8 @@ class CalculatorBrain {
             operand1String.append(digit)
             return operand1String
         } else {
+            print("yay adding to second number")
+            print("which before adding is: \(operand2String)")
             operand2String.append(digit)
             return operand2String
         }
@@ -80,6 +82,9 @@ class CalculatorBrain {
             
             if Double(Int(answer)) == answer {
                 displayAnswer = Int(answer)
+                decimalTapped = false
+            } else {
+                decimalTapped = true
             }
             
             if let displayAnswer = displayAnswer {
@@ -90,18 +95,6 @@ class CalculatorBrain {
             
             operand2String = ""
             operatorType = nil
-            
-            if String(answer).contains(".") {
-                decimalTapped = true
-                
-                print("decimal in answer")
-                
-            } else {
-                decimalTapped = false
-                
-                print("no decimal in answer")
-                
-            }
             
             if let displayAnswer = displayAnswer {
                 return String(displayAnswer)

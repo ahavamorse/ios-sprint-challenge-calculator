@@ -30,6 +30,55 @@ class CalculatorViewController: UIViewController {
         }
     }
     
+    @IBAction func signSwitchTapped() {
+        guard let calcBrain = brain else {
+            return
+        }
+        var result: Int? = nil
+        let changedValue: Double
+        
+        if calcBrain.operatorType != nil {
+            if let doubleValue =  Double(calcBrain.operand2String) {
+                changedValue = doubleValue * -1
+                
+                if changedValue == Double(Int(changedValue)) {
+                    result = Int(changedValue)
+                }
+            } else {
+                return
+            }
+            
+            guard let finalResult = result else {
+                calcBrain.operand2String = String(changedValue)
+                outputLabel.text = String(changedValue)
+                return
+            }
+            
+            calcBrain.operand2String = String(finalResult)
+            outputLabel.text = String(finalResult)
+        } else {
+            if let doubleValue =  Double(calcBrain.operand1String) {
+                changedValue = doubleValue * -1
+                
+                if changedValue == Double(Int(changedValue)) {
+                    result = Int(changedValue)
+                }
+            } else {
+                return
+            }
+            
+            guard let finalResult = result else {
+                calcBrain.operand1String = String(changedValue)
+                outputLabel.text = String(changedValue)
+                return
+            }
+            
+            calcBrain.operand1String = String(finalResult)
+            outputLabel.text = String(finalResult)
+        }
+        
+    }
+    
     @IBAction func operatorTapped(_ sender: UIButton) {
         if let calcBrain = brain,
             let operatorTapped = sender.titleLabel?.text {
