@@ -19,8 +19,23 @@ class CalculatorBrain {
     var operand1String = ""
     var operand2String = ""
     var operatorType: OperatorType? = nil
+    var decimalTapped = false
     
     func addOperandDigit(_ digit: String) -> String {
+        if digit == "." {
+            
+            if decimalTapped {
+                if operatorType == nil {
+                    return operand1String
+                } else {
+                    return operand2String
+                }
+            }
+            
+            decimalTapped = true
+            print("decimal tapped")
+        }
+        
         if operatorType == nil {
             operand1String.append(digit)
             return operand1String
@@ -33,6 +48,8 @@ class CalculatorBrain {
     func setOperator(_ operatorString: String) {
         if let newOperator = OperatorType(rawValue: operatorString) {
             operatorType = newOperator
+            decimalTapped = false
+            print("new number wihtout decimal")
         }
     }
     
@@ -61,6 +78,19 @@ class CalculatorBrain {
             operand1String = String(answer)
             operand2String = ""
             operatorType = nil
+            
+            if String(answer).contains(".") {
+                decimalTapped = true
+                
+                print("decimal in answer")
+                
+            } else {
+                decimalTapped = false
+                
+                print("no decimal in answer")
+                
+            }
+            
             return String(answer)
         }
         return nil
